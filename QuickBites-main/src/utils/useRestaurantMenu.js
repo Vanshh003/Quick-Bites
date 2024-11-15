@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const useRestaurantMenu = (resID) => {
     const [resInfo, setResInfo] = useState(null);
@@ -11,7 +12,7 @@ const useRestaurantMenu = (resID) => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8081/api/restaurants/${resID}`, {
+            const response = await axios.get(`${API_URL}${resID}`, {
                 maxBodyLength: Infinity,
                 headers: {}
             });

@@ -7,6 +7,7 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 
 import axios from "axios";
+const API_URL = process.env.REACT_APP_API_URL;
 // const axios = require('axios');
 
 const Body = () => {
@@ -34,7 +35,7 @@ const Body = () => {
         // const data = await fetch(HOME_API);
 
 
-        const json = await axios.get('http://localhost:8081/api/restaurants', {
+        const json = await axios.get(`${API_URL}`, {
                 maxBodyLength: Infinity,
                 headers: {}
             })

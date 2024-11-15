@@ -9,7 +9,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8081;
 
-app.use(cors());
+
+const corsOptions = {
+    origin: 'https://quick-bites-frontend-zun4.onrender.com', // Replace with your frontend URL
+    optionsSuccessStatus: 200,
+  };
+  
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
