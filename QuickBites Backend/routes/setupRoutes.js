@@ -1,6 +1,5 @@
 import express from 'express';
 import Restaurant from '../models/Restaurant.js';
-import resData from '../mockData.js';
 
 const router = express.Router();
 
