@@ -93,7 +93,7 @@ const appRouter = createBrowserRouter([
         // children is a list of paths
         children: [
             {
-                path: "/restaurants",
+                path: "/api/restaurants",
                 element: <Body />,
             }, 
             // {
