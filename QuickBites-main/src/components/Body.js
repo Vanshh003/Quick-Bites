@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { HOME_API } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useLocation } from "react-router-dom";
 
 import axios from "axios";
 const API_URL = process.env.REACT_APP_API_URL;
@@ -18,6 +19,9 @@ const Body = () => {
     const [searchText, setSearchText] = useState("");
 
     const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
+    const location = useLocation();
+
     
 
     // if no dependency array => useEffect is called on every render
@@ -27,6 +31,15 @@ const Body = () => {
         // console.log(listOfRestaurants);
         fetchData();
     }, []);
+
+
+
+    useEffect(() => {
+        // Reset to original list when the user navigates to the home page
+        if (location.pathname === "/") {
+            setModifiedListOfRestaurants(listOfRestaurants);
+        }
+    }, [location, listOfRestaurants]);
 
     
 
@@ -89,7 +102,7 @@ const Body = () => {
                         onClick={() => {
                             // Filter the restaurant cards and update the UI
                             const filteredRestaurant = listOfRestaurants.filter((res) => 
-                                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                                res.name.toLowerCase().includes(searchText.toLowerCase())
                             );
 
                             // Update the state variable
@@ -107,7 +120,7 @@ const Body = () => {
                         className="px-4 py-2 bg-gray-100 rounded-lg"
                         onClick={() => {
                             // filter logic here
-                            const filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 4);
+                            const filteredList = listOfRestaurants.filter((res) => res.rating > 4.3);
                             
                             // update state variable
                             setModifiedListOfRestaurants(filteredList);  

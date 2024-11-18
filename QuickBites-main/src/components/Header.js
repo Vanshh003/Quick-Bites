@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const navigate = useNavigate();
 
     const [btnNameReact, setBtnNameReact] = useState("Login");
     const [tooltipVisible, setTooltipVisible] = useState(false);
@@ -66,7 +68,7 @@ const Header = () => {
                         )}
                     </li>
                     <li className="px-4">
-                        <Link to="/"> Home </Link>
+                    <Link to="/" onClick={() => navigate("/")}> Home </Link>
                     </li>
                     <li className="px-4">
                         <Link to="/about"> About Us </Link>
